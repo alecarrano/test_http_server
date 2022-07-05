@@ -15,6 +15,7 @@ class GetHandler(
 
     def do_GET(self):
         logging.error(self.headers)
+        logging.error(os.environ.get('HOME', '/home/username/'))
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
     def do_POST(self):
