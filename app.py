@@ -19,6 +19,7 @@ class GetHandler(
 
     def do_POST(self):
         logging.error(self.headers)
+        logging.error(os.environ.get('HOME', '/home/username/'))
     
     def do_HEAD(self):
         sys.exit(1)
