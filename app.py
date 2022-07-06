@@ -15,12 +15,12 @@ class GetHandler(
 
     def do_GET(self):
         logging.error(self.headers)
-        logging.error(os.environ.get('HOME', '/home/username/'))
+        logging.error(os.environ.get('PRINT_VAR', '/home/username/'))
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
     def do_POST(self):
         logging.error(self.headers)
-        logging.error(os.environ.get('HOME', '/home/username/'))
+        logging.error(os.environ.get('PRINT_VAR', '/home/username/'))
     
     def do_HEAD(self):
         sys.exit(1)
