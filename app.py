@@ -25,7 +25,7 @@ class GetHandler(
         conn = psycopg2.connect(
                 database=os.environ.get('DB_DBNAME', 'f'), user=os.environ.get('DB_USER', 'f'), password=os.environ.get('DB_PASSWORD', 'f'), host=os.environ.get('DB_HOST', 'f'), port= os.environ.get('DB_PORT', 'f')
                 )
-        logging.error('connected')
+        logging.error('Connection closed?' + connection.closed)
         
     def do_POST(self):
         logging.error(self.headers)
