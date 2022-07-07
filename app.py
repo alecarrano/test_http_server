@@ -16,7 +16,11 @@ class GetHandler(
 
     def do_GET(self):
         logging.error(self.headers)
-        logging.error(os.environ.get('DB_DBNAME', '/home/username/'))
+        logging.error(os.environ.get('DB_DBNAME', 'not_replaced_db_name'))
+        logging.error(os.environ.get('DB_HOST', 'not_replaced_db_host'))
+        logging.error(os.environ.get('DB_PORT', 'not_replaced_db_port'))
+        logging.error(os.environ.get('DB_USER', 'not_replaced_db_user'))
+        logging.error(os.environ.get('DB_PASSWORD', 'not_replaced_db_password'))
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
         conn = psycopg2.connect(
                 database=os.environ.get('DB_DBNAME', 'f'), user=os.environ.get('DB_USER', 'f'), password=os.environ.get('DB_PASSWORD', 'f'), host=os.environ.get('DB_HOST', 'f'), port= os.environ.get('DB_PORT', 'f')
