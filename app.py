@@ -27,7 +27,6 @@ class GetHandler(
                 database=os.environ.get('DB_DBNAME', 'f'), user=os.environ.get('DB_USER', 'f'), password=os.environ.get('DB_PASSWORD', 'f'), host=os.environ.get('DB_HOST', 'f'), port= os.environ.get('DB_PORT', 'f')
                 ) 
                 logging.error('Connected logged')
-                logging.error('Connection closed?' , connection.closed)
         except (Exception, psycopg2.DatabaseError) as error:
                 logging.error('Error logged: ' + error)
         
