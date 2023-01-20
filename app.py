@@ -16,7 +16,7 @@ class GetHandler(
 
     def do_GET(self):
         logging.error(self.headers)
-        logging.error('TEST CONCATENATION: ' + os.environ.get('TEST_CONCAT', 'not_replaced_concat'))
+        logging.error('TEST_CONCATENATION: ' + os.environ.get('TEST_CONCAT', 'not_replaced_concat'))
         logging.error('DB NAME: ' + os.environ.get('DB_DBNAME', 'not_replaced_db_name'))
         logging.error('DB HOST: ' + os.environ.get('DB_HOST', 'not_replaced_db_host'))
         logging.error('DB PORT: ' + os.environ.get('DB_PORT', 'not_replaced_db_port'))
