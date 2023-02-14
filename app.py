@@ -16,6 +16,15 @@ class GetHandler(
 
     def do_GET(self):
         logging.error(self.headers)
+        path = os.environ.get('TEST_ENV_PATH', 'not_replaced_PATH')
+        if path != 'not_replaced_PATH':
+            logging.error('TEST_ENV_PATH: ' + path)
+            with open(path, "r") as f:
+                print(f.read())
+        else:
+            logging.error('TEST_ENV_PATH: not_replaced_PATH')
+        # test alias
+        logging.error('TEST_ENV_PATH_ALIAS: ' + os.environ.get('TEST_ENV_PATH_ALIAS', 'not_replaced_PATH_ALIAS'))
         logging.error('TEST_CONCATENATION: ' + os.environ.get('TEST_CONCAT', 'not_replaced_concat'))
         logging.error('DB NAME: ' + os.environ.get('DB_DBNAME', 'not_replaced_db_name'))
         logging.error('DB HOST: ' + os.environ.get('DB_HOST', 'not_replaced_db_host'))
