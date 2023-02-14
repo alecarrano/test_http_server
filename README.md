@@ -1,14 +1,7 @@
 # test_http_server
-dfdfdfdf
-dfjdjd
-qsdqsdqsdqsdqsdqsdqsd
-qsdqsdqsd
-qsdqsdqsdqsd
-qsdqsdqsdqdqsd
-sdsdfsdfsdfsfsdfsdfs
-sdfsdfsdf
-sdfsdfsdfsdfsdf
-sfssfsf
-qsdqsdqsd
-qsdqsdqsd
-qsdqsdaqsdqsdqsd
+
+build:
+docker build -t http_server .
+
+run:
+docker run http_server
