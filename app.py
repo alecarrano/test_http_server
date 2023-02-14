@@ -20,7 +20,7 @@ class GetHandler(
         if path != 'not_replaced_PATH':
             logging.error('TEST_ENV_PATH: ' + path)
             with open(path, "r") as f:
-                logging.error('file content: ' + print(f.read()))
+                logging.error('file content: ' + f.read())
         else:
             logging.error('TEST_ENV_PATH: not_replaced_PATH')
         # test alias
