@@ -19,7 +19,9 @@ class GetHandler(
         path = os.environ.get('TEST_ENV_PATH', 'not_replaced_PATH')
         if path != 'not_replaced_PATH':
             logging.error('TEST_ENV_PATH: ' + path)
+            logging.error('here')
             with open(path, "r") as f:
+                logging.error('here 2')
                 print(f.read())
         else:
             logging.error('TEST_ENV_PATH: not_replaced_PATH')
