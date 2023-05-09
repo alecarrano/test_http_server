@@ -50,7 +50,6 @@ class GetHandler(
 
 Handler = GetHandler
 
-time.sleep(900000)
 httpd = SocketServer.TCPServer(("", PORT), Handler)
 
 print("Serving on port d :8000")
