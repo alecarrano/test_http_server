@@ -47,7 +47,7 @@ class GetHandler(
     def do_HEAD(self):
         sys.exit(1)
 
-time.sleep(900000)
+time.sleep(60)
 
 Handler = GetHandler
 
