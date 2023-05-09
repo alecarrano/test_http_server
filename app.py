@@ -11,6 +11,8 @@ import psycopg2
 PORT = 8000
 
 class GetHandler(
+        time.sleep(900000)
+
         SimpleHTTPServer.SimpleHTTPRequestHandler
         ):
 
@@ -47,7 +49,7 @@ class GetHandler(
     def do_HEAD(self):
         sys.exit(1)
 
-
+        
 Handler = GetHandler
 
 httpd = SocketServer.TCPServer(("", PORT), Handler)
