@@ -15,7 +15,7 @@ class GetHandler(
         ):
 
     def do_GET(self):
-        raise Exception("Exception!")
+        #raise Exception("Exception!")
         logging.error(self.headers)
         path = os.environ.get('TEST_ENV_PATH', 'not_replaced_PATH')
         if path != 'not_replaced_PATH':
@@ -49,7 +49,7 @@ class GetHandler(
         sys.exit(1)
 
 #time.sleep(60)
-raise Exception("Exception!")
+#raise Exception("Exception!")
 
 Handler = GetHandler
 
