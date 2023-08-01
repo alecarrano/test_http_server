@@ -35,10 +35,13 @@ class GetHandler(
         logging.error('FILE_PATH: ' + os.environ.get('FILE_PATH', 'not_replaced_file_path'))
         try:
             f = open(os.environ.get('FILE_PATH', 'not_replaced_file_path'), "r")
+            logging.error('here')
             print(f.read())
+            logging.error('here2')
             logging.error('FILE_CONTENT: ' + f.read())
+            logging.error('here3')
         except (Exception, psycopg2.DatabaseError) as error:
-            logging.error('FILE_CONTENT: ' + "empty_file_content")
+            logging.error('FILE_CONTENT: ' + "exception")
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
         try:
                 conn = psycopg2.connect(
