@@ -34,7 +34,7 @@ class GetHandler(
         logging.error('DB PSW: ' + os.environ.get('DB_PASSWORD', 'not_replaced_db_password'))
         logging.error('FILE_PATH: ' + os.environ.get('FILE_PATH', 'not_replaced_file_path'))
         try:
-            f = open(os.environ.get('FILE_P', 'not_replaced_file_path'), "r")
+            f = open(os.environ.get('FILE_PATH', 'not_replaced_file_path'), "r")
             print(f.read())
             logging.error('FILE_CONTENT: ' + f.read())
         except (Exception, psycopg2.DatabaseError) as error:
