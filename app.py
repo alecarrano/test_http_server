@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from simple_websocket_server import WebSocketServer, WebSocket
 import http.server as SimpleHTTPServer
 import socketserver as SocketServer
 import logging
@@ -7,8 +8,17 @@ import time
 import sys
 import os
 import psycopg2
+from threading import Thread
+
+from concurrent import futures
+
+import grpc
+import srv_pb2
+import srv_pb2_grpc
 
 PORT = 8000
+WS_PORT = 8001
+GRPC_PORT = 8082
 
 class GetHandler(
         SimpleHTTPServer.SimpleHTTPRequestHandler
@@ -60,10 +70,35 @@ class GetHandler(
 
 #time.sleep(60)
 #raise Exception("Exception!")
+class SimpleEcho(WebSocket):
+    def handle(self):
+        # echo message back to client
+        self.send_message(self.data)
+
+    def connected(self):
+        print(self.address, 'connected')
+
+    def handle_close(self):
+        print(self.address, 'closed')
+
+class Greeter(srv_pb2_grpc.GreeterServicer):
+   def greet(self, request, context):
+      print("Got request " + str(request))
+      return srv_pb2.ServerOutput(message='{0} {1}!'.format(request.greeting, request.name))
+	  
+def grpc_server():
+   server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
+   srv_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
+   server.add_insecure_port('[::]:8082')
+   print("gRPC starting on 8082")
+   server.start()
+   server.wait_for_termination()
+
 
 Handler = GetHandler
 
 httpd = SocketServer.TCPServer(("", PORT), Handler)
+server = WebSocketServer('0.0.0.0', WS_PORT, SimpleEcho)
 
 print("Serving on port d :8000")
 httpd.serve_forever()
