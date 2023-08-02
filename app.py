@@ -12,10 +12,6 @@ from threading import Thread
 
 from concurrent import futures
 
-import grpc
-import srv_pb2
-import srv_pb2_grpc
-
 PORT = 8000
 WS_PORT = 8001
 GRPC_PORT = 8082
@@ -80,19 +76,6 @@ class SimpleEcho(WebSocket):
 
     def handle_close(self):
         print(self.address, 'closed')
-
-class Greeter(srv_pb2_grpc.GreeterServicer):
-   def greet(self, request, context):
-      print("Got request " + str(request))
-      return srv_pb2.ServerOutput(message='{0} {1}!'.format(request.greeting, request.name))
-	  
-def grpc_server():
-   server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
-   srv_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
-   server.add_insecure_port('[::]:8082')
-   print("gRPC starting on 8082")
-   server.start()
-   server.wait_for_termination()
 
 
 Handler = GetHandler
